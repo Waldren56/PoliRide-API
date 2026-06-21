@@ -1,14 +1,13 @@
 package com.example.demo.vehicles;
 
 import com.example.demo.vehicles.expeption.ResourceNotFoundException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/vehicle")
+@RequestMapping("/api/v1/vehicles")
 public class VehicleController {
     private final VehicleRepository vehicleRepository;
 
@@ -19,5 +18,11 @@ public class VehicleController {
     @GetMapping
     public List<Vehicle> findAll() {
         return (List<Vehicle>) vehicleRepository.findAll();
+    }
+
+    @GetMapping(params = "type")
+    public List<Vehicle> findByType(@RequestParam("type") String type) {
+        return Collections.singletonList(vehicleRepository.findVehicleByType(Vehicle.Type.valueOf(type.toUpperCase()))
+                .orElseThrow(() -> new ResourceNotFoundException(type)));
     }
 }
