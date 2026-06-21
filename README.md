@@ -1,45 +1,45 @@
-# Book Management REST API
+# Vehicle Management REST API
 
-An elegant, production-ready RESTful API built with **Spring Boot** and **PostgreSQL** to manage a book catalog. This project showcases enterprise-grade patterns, including DTO-based communication, structured logging, centralized error handling, and robust data persistence.
+Un'API RESTful pronta per la produzione sviluppata con **Spring Boot** e **PostgreSQL** per la gestione e il monitoraggio di una flotta di veicoli urbani. Il progetto implementa pattern architetturali di livello enterprise, garantendo la gestione della concorrenza, il disaccoppiamento dei dati, la paginazione e il pieno rispetto della maturità REST.
 
-## 🚀 Key Features
+## 🚀 Funzionalità Chiave
 
-* **Layered Architecture:** Clear separation of concerns across Web (Controllers), Business Logic (Services), and Data Access (Repositories) layers to ensure maximum maintainability and testability.
-* **DTO Pattern:** Secure and optimized data transfer using modern Java `record` types, decoupling the internal database entity model from the public API contract.
-* **Data Validation:** Strict inbound payload validation using `jakarta.validation` constraints (e.g., `@NotBlank`, `@Size`, `@Min`) to reject malformed data at the edge.
-* **Centralized Exception Handling:** Uniform and secure HTTP error responses via a `@RestControllerAdvice`, mapping internal domain exceptions into clean, semantic, RFC-compliant JSON errors.
-* **Database Seeding:** Automated initial data population on application startup with safe conditional checks to pre-populate the PostgreSQL database with standard reference data.
-* **Comprehensive Logging:** Multi-level structured logs (`TRACE` to `INFO`) written concurrently to both the standard console output and a time-based rolling file for production observability.
+* **Architettura a Livelli:** Chiara separazione delle responsabilità tra i livelli Web (Controllers), Business Logic (Services) e Data Access (Repositories).
+* **Pattern DTO & MapStruct:** Disaccoppiamento completo tra i modelli di persistenza del database e il contratto pubblico dell'API tramite l'uso di Java `record` e mappatura automatica con MapStruct.
+* **Gestione della Concorrenza (Optimistic Locking):** Prevenzione delle race condition durante gli aggiornamenti simultanei dello stato dei veicoli mediante l'uso dell'annotazione `@Version` di JPA, restituendo un codice `409 Conflict` in caso di collisione.
+* **Validazione dei Dati Strutturata:** Convalida rigorosa dei payload in ingresso tramite vincoli `jakarta.validation` (`@NotBlank`, `@Min`, `@Max`) per intercettare dati malformati a livello di Controller.
+* **Paginazione e Ordinamento:** Endpoint di lettura ottimizzati per supportare grandi volumi di dati tramite l'integrazione di `Pageable` e `Page` di Spring Data.
+* **Livello 3 di Maturità REST (HATEOAS):** Inclusione di link ipertestuali dinamici nelle risposte JSON per guidare il client sulle azioni disponibili (es. noleggio, manutenzione) in base allo stato attuale del veicolo.
+* **Gestione Centralizzata delle Eccezioni:** Intercettazione globale degli errori tramite `@RestControllerAdvice` per garantire risposte HTTP semantiche, pulite e conformi agli standard RFC.
 
 ---
 
-## 🛠️ Tech Stack & Dependencies
+## 🛠️ Tech Stack & Dipendenze
 
 * **Java 17 / 21**
 * **Spring Boot 3.x**
-    * Spring Web (RESTful Endpoints)
-    * Spring Data JPA (Hibernate ORM)
-    * Validation (`jakarta.validation-api`)
-* **PostgreSQL** (Production-ready Relational Database)
-* **Maven** (Project Management and Build Automation)
+    * Spring Web
+    * Spring Data JPA (Hibernate)
+    * Spring HATEOAS
+    * Validation
+* **PostgreSQL** (Database Relazionale)
+* **MapStruct** (Mappatura dei DTO)
+* **Maven** (Gestione del ciclo di vita del progetto)
 
 ---
 
-## 🚦 Getting Started
+## 🚦 Configurazione e Avvio
 
-### Prerequisites
-Before you begin, ensure you have the following installed:
-* **JDK 17** or higher
+### Prerequisiti
+Assicurati di avere installato:
+* **JDK 17** o superiore
 * **Maven 3.x**
-* **PostgreSQL** instance running locally or via Docker
-* **Git** installed on your machine
+* **PostgreSQL** (locale o tramite Docker)
+* **Git**
 
-### 👥 How to Clone and Run Locally
+### 👥 Clonazione e Esecuzione Locale
 
-Follow these steps to clone the repository, configure the environment, and spin up the backend application on your local machine:
-
-1. **Clone the repository:**
-   Open your terminal and execute the following command:
+1. **Clona il repository:**
    ```bash
-   git clone [https://github.com/Waldren56/Books-REST-API.git](https://github.com/Waldren56/Books-REST-API.git)
-   cd Books-REST-API
+   git clone [https://github.com/YourUsername/Vehicle-Management-REST-API.git](https://github.com/YourUsername/Vehicle-Management-REST-API.git)
+   cd Vehicle-Management-REST-API
