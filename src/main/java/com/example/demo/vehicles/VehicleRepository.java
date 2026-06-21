@@ -1,11 +1,9 @@
 package com.example.demo.vehicles;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-@Repository
-public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
-    Optional<Vehicle> findVehicleById(String title);
+public interface VehicleRepository extends CrudRepository<Vehicle, Long> {
+    Optional<Vehicle> findVehicleById(Long id);
 }
