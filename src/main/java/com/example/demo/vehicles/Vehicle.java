@@ -9,6 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "vehicles")
 public class Vehicle {
+    // Creating all the fields for the vehicle
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,10 +37,10 @@ public class Vehicle {
     @JsonProperty("available")
     private boolean available;
 
-    // Costruttore vuoto obbligatorio per JPA/Jackson
+    // Empty constructor
     public Vehicle(){}
 
-    // Costruttore personalizzato (Nomi dei parametri modificati per evitare bug)
+    // Personalized constructor
     public Vehicle(Type type, int batteryLevel, double longitude, double latitude, boolean available){
         this.type = type;
         this.serialNumber = UUID.randomUUID().toString();
@@ -49,6 +50,7 @@ public class Vehicle {
         this.available = available;
     }
 
+    // GETTERS and SETTERS
     public String getSerialNumber() {
         return serialNumber;
     }

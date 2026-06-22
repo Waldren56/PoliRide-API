@@ -11,6 +11,7 @@ public class VehicleConfig {
     @Bean
     CommandLineRunner commandLineRunner(VehicleRepository vehicleRepository) {
         return args -> {
+            // Adding first vehicle ( object )
             Vehicle vehicle1 = new Vehicle(
                     Vehicle.Type.ECAR,
                     56,
@@ -18,6 +19,7 @@ public class VehicleConfig {
                     11.2558,
                     true
             );
+            // Adding second vehicle ( object )
             Vehicle vehicle2 = new Vehicle(
                     Vehicle.Type.EBIKE,
                     32,

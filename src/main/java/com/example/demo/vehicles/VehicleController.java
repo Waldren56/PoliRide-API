@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/vehicles")
 public class VehicleController {
+    // Initializing repository for the controller
     private final VehicleRepository vehicleRepository;
 
     @Autowired
@@ -19,28 +20,33 @@ public class VehicleController {
         this.vehicleRepository = vehicleRepository;
     }
 
+    // Standard GET request for see every object
     @GetMapping
     public List<Vehicle> findAll() {
         return (List<Vehicle>) vehicleRepository.findAll();
     }
 
+    // GET request filtered by type parameter
     @GetMapping(params = "type")
     public List<Vehicle> findByType(@RequestParam("type") String type, Vehicle vehicle) {
         return Collections.singletonList(vehicleRepository.findVehicleByType(Vehicle.Type.valueOf(type.toUpperCase()))
                 .orElseThrow(() -> new ResourceNotFoundException(type, vehicle.getType(), vehicle.getId())));
     }
 
+    // GET request filtered by id
     @GetMapping("/{id}")
     public List<Vehicle> findById(@PathVariable Long id) {
         return Collections.singletonList(vehicleRepository.findVehicleById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle with id " + id + " not found", null, id)));
     }
 
+    // Standard POST request
     @PostMapping
     public Vehicle create(@Valid @RequestBody Vehicle vehicle) {
         return vehicleRepository.save(vehicle);
     }
 
+    // Standard PUT request
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable Long id, @RequestBody Vehicle vehicle) {
         return vehicleRepository.findVehicleById(id)

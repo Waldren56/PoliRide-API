@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
+// Repository with custom named methods ( Optional )
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     Optional<Vehicle> findVehicleByType(Vehicle.Type type);
 
