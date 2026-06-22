@@ -1,10 +1,9 @@
 package com.example.demo.vehicles;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import org.springframework.beans.factory.annotation.Value;
-
 import java.util.UUID;
 
 @Entity
@@ -20,6 +19,7 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private Type type;
+
     public enum Type {
         ECAR,
         SCOOTER,
@@ -29,19 +29,24 @@ public class Vehicle {
     @Min(value = 0, message = "Please, enter a number above 0.")
     @Max(value = 100, message = "Please, enter a number below 100.")
     private int batteryLevel;
+
     private double longitude;
     private double latitude;
-    private boolean isAvailable;
 
+    @JsonProperty("available")
+    private boolean available;
+
+    // Costruttore vuoto obbligatorio per JPA/Jackson
     public Vehicle(){}
 
-    public Vehicle(Type type, int batteryLevel, double longitude, double latitude, boolean isAvailable){
+    // Costruttore personalizzato (Nomi dei parametri modificati per evitare bug)
+    public Vehicle(Type type, int batteryLevel, double longitude, double latitude, boolean available){
         this.type = type;
-        this.serialNumber = String.valueOf(UUID.randomUUID());
+        this.serialNumber = UUID.randomUUID().toString();
         this.batteryLevel = batteryLevel;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
 
     public String getSerialNumber() {
@@ -92,11 +97,12 @@ public class Vehicle {
         this.longitude = longitude;
     }
 
+    @JsonProperty("available")
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 }
