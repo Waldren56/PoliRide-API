@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+
+import java.awt.print.Book;
 import java.util.UUID;
 
 @Entity
@@ -29,19 +31,19 @@ public class Vehicle {
 
     @Min(value = 0, message = "Please, enter a number above 0.")
     @Max(value = 100, message = "Please, enter a number below 100.")
-    private int batteryLevel;
+    private Integer batteryLevel;
 
-    private double longitude;
-    private double latitude;
+    private Double longitude;
+    private Double latitude;
 
     @JsonProperty("available")
-    private boolean available;
+    private Boolean available;
 
     // Empty constructor
     public Vehicle(){}
 
     // Personalized constructor
-    public Vehicle(Type type, int batteryLevel, double longitude, double latitude, boolean available){
+    public Vehicle(Type type, Integer batteryLevel, Double longitude, Double latitude, Boolean available){
         this.type = type;
         this.serialNumber = UUID.randomUUID().toString();
         this.batteryLevel = batteryLevel;
@@ -75,7 +77,7 @@ public class Vehicle {
         this.type = type;
     }
 
-    public int getBatteryLevel() {
+    public Integer getBatteryLevel() {
         return batteryLevel;
     }
 
@@ -83,7 +85,7 @@ public class Vehicle {
         this.batteryLevel = batteryLevel;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
@@ -91,7 +93,7 @@ public class Vehicle {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
@@ -100,7 +102,7 @@ public class Vehicle {
     }
 
     @JsonProperty("available")
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return available;
     }
 

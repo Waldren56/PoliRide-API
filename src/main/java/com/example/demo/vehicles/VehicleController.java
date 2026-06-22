@@ -1,6 +1,7 @@
 package com.example.demo.vehicles;
 
-import com.example.demo.vehicles.expeption.ResourceNotFoundException;
+import com.example.demo.expeption.ResourceNotFoundException;
+import com.example.demo.expeption.VehicleIdNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,14 +31,12 @@ public class VehicleController {
     @GetMapping(params = "type")
     public List<Vehicle> findByType(@RequestParam("type") String type, Vehicle vehicle) {
         return Collections.singletonList(vehicleRepository.findVehicleByType(Vehicle.Type.valueOf(type.toUpperCase()))
-                .orElseThrow(() -> new ResourceNotFoundException(type, vehicle.getType(), vehicle.getId())));
+                .orElseThrow(() -> new ResourceNotFoundException(type)));
     }
 
     // GET request filtered by id
-    @GetMapping("/{id}")
-    public List<Vehicle> findById(@PathVariable Long id) {
-        return Collections.singletonList(vehicleRepository.findVehicleById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Vehicle with id " + id + " not found", null, id)));
+    public ResponseEntity<VehicleResponseDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(vehicleService.findById(id));
     }
 
     // Standard POST request
@@ -62,6 +61,6 @@ public class VehicleController {
 
                     Vehicle updatedVehicle = vehicleRepository.save(existingVehicle);
                     return ResponseEntity.ok(updatedVehicle);
-                }).orElseThrow(() -> new ResourceNotFoundException("Vehicle with id " + id + " not found", vehicle.getType(), id));
+                }).orElseThrow(() -> new VehicleIdNotFoundException("Vehicle with id " + id + " not found", vehicle.getType(), id));
     }
 }
