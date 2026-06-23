@@ -1,6 +1,5 @@
 package com.example.demo.expeption;
 
-import com.example.demo.vehicles.Vehicle;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

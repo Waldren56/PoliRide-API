@@ -14,7 +14,7 @@ public class VehicleConfig {
             // Adding first vehicle ( object )
             Vehicle vehicle1 = new Vehicle(
                     Vehicle.Type.ECAR,
-                    56,
+                    6,
                     43.7696,
                     11.2558,
                     true
@@ -25,9 +25,17 @@ public class VehicleConfig {
                     32,
                     41.7056012,
                     13.2528969,
-                    false
+                    true
             );
-            vehicleRepository.saveAll(List.of(vehicle1, vehicle2));
+            // Adding third vehicle ( object )
+            Vehicle vehicle3 = new Vehicle(
+                    Vehicle.Type.EBIKE,
+                    72,
+                    45.453321,
+                    85.245254,
+                    true
+            );
+            vehicleRepository.saveAll(List.of(vehicle1, vehicle2, vehicle3));
         };
     }
 }

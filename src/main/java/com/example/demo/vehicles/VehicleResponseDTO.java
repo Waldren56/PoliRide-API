@@ -2,27 +2,21 @@ package com.example.demo.vehicles;
 
 public record VehicleResponseDTO(
         Vehicle.Type type,
-        int batteryLevel,
+        String serialNumber,
+        Integer batteryLevel,
         double longitude,
-        double latitude,
-        boolean available
+        Double latitude,
+        Boolean available,
+        Long id
 ) {
     public static VehicleResponseDTO fromEntity(Vehicle vehicle) {
-        String displayVehicle = vehicle.getType()
-                + " "
-                + vehicle.getBatteryLevel()
-                + " "
-                + vehicle.getLongitude()
-                + " "
-                + vehicle.getLatitude()
-                + " "
-                + vehicle.isAvailable();
-
         return new VehicleResponseDTO(vehicle.getType(),
+                vehicle.getSerialNumber(),
                 vehicle.getBatteryLevel(),
                 vehicle.getLongitude(),
                 vehicle.getLatitude(),
-                vehicle.isAvailable()
+                vehicle.isAvailable(),
+                vehicle.getId()
         );
     }
 }

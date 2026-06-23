@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
-import java.awt.print.Book;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +13,7 @@ public class Vehicle {
     // Creating all the fields for the vehicle
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "serial_number", nullable = false, unique = true, updatable = false)
     private String serialNumber = UUID.randomUUID().toString();
@@ -31,25 +30,31 @@ public class Vehicle {
 
     @Min(value = 0, message = "Please, enter a number above 0.")
     @Max(value = 100, message = "Please, enter a number below 100.")
-    private Integer batteryLevel;
+    private int batteryLevel;
 
-    private Double longitude;
-    private Double latitude;
+    private double longitude;
+    private double latitude;
 
     @JsonProperty("available")
-    private Boolean available;
+    private boolean available;
 
     // Empty constructor
     public Vehicle(){}
 
     // Personalized constructor
-    public Vehicle(Type type, Integer batteryLevel, Double longitude, Double latitude, Boolean available){
+    public Vehicle(Type type, int batteryLevel, double longitude, double latitude, boolean available) {
         this.type = type;
-        this.serialNumber = UUID.randomUUID().toString();
+        this.serialNumber = java.util.UUID.randomUUID().toString();
         this.batteryLevel = batteryLevel;
         this.longitude = longitude;
         this.latitude = latitude;
         this.available = available;
+
+        if (batteryLevel < 15) {
+            this.available = false;
+        } else {
+            this.available = (batteryLevel >= 15) && available;
+        }
     }
 
     // GETTERS and SETTERS

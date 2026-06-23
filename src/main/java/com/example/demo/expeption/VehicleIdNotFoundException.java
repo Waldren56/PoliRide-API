@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class VehicleIdNotFoundException extends RuntimeException {
     public VehicleIdNotFoundException(String Message, Vehicle.Type type, Long id) {
-        super("Message: " + Message);
+        super("Message: " + Message + ", Vehicle with id " + id + " not found");
     }
 }
