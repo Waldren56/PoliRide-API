@@ -41,5 +41,4 @@ Assicurati di avere installato:
 
 1. **Clona il repository:**
    ```bash
-   git clone [https://github.com/YourUsername/Vehicle-Management-REST-API.git](https://github.com/YourUsername/Vehicle-Management-REST-API.git)
-   cd Vehicle-Management-REST-API
+   git clone https://github.com/YourUsername/Vehicle-Management-REST-API.git
