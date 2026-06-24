@@ -1,44 +1,47 @@
-# Vehicle Management REST API
+Vehicle Management REST API
 
-Un'API RESTful pronta per la produzione sviluppata con **Spring Boot** e **PostgreSQL** per la gestione e il monitoraggio di una flotta di veicoli urbani. Il progetto implementa pattern architetturali di livello enterprise, garantendo la gestione della concorrenza, il disaccoppiamento dei dati, la paginazione e il pieno rispetto della maturità REST.
+A production-ready RESTful API built with Spring Boot and PostgreSQL for managing and monitoring a fleet of urban vehicles. The project implements enterprise-grade architectural patterns, ensuring concurrency handling, data decoupling, pagination, and full compliance with REST maturity principles.
 
-## 🚀 Funzionalità Chiave
+🚀 Key Features
 
-* **Architettura a Livelli:** Chiara separazione delle responsabilità tra i livelli Web (Controllers), Business Logic (Services) e Data Access (Repositories).
-* **Pattern DTO & MapStruct:** Disaccoppiamento completo tra i modelli di persistenza del database e il contratto pubblico dell'API tramite l'uso di Java `record` e mappatura automatica con MapStruct.
-* **Gestione della Concorrenza (Optimistic Locking):** Prevenzione delle race condition durante gli aggiornamenti simultanei dello stato dei veicoli mediante l'uso dell'annotazione `@Version` di JPA, restituendo un codice `409 Conflict` in caso di collisione.
-* **Validazione dei Dati Strutturata:** Convalida rigorosa dei payload in ingresso tramite vincoli `jakarta.validation` (`@NotBlank`, `@Min`, `@Max`) per intercettare dati malformati a livello di Controller.
-* **Paginazione e Ordinamento:** Endpoint di lettura ottimizzati per supportare grandi volumi di dati tramite l'integrazione di `Pageable` e `Page` di Spring Data.
-* **Livello 3 di Maturità REST (HATEOAS):** Inclusione di link ipertestuali dinamici nelle risposte JSON per guidare il client sulle azioni disponibili (es. noleggio, manutenzione) in base allo stato attuale del veicolo.
-* **Gestione Centralizzata delle Eccezioni:** Intercettazione globale degli errori tramite `@RestControllerAdvice` per garantire risposte HTTP semantiche, pulite e conformi agli standard RFC.
+* Layered Architecture: Clear separation of concerns between the Web layer (Controllers), Business Logic layer (Services), and Data Access layer (Repositories).
+* DTO Pattern & MapStruct: Complete decoupling between database persistence models and the public API contract through the use of Java records and automatic mapping with MapStruct.
+* Concurrency Handling (Optimistic Locking): Prevention of race conditions during simultaneous vehicle status updates using JPA’s @Version annotation, returning a 409 Conflict status code in case of collisions.
+* Structured Data Validation: Strict validation of incoming payloads using jakarta.validation constraints (@NotBlank, @Min, @Max) to catch malformed data at the Controller level.
+* Pagination and Sorting: Optimized read endpoints designed to support large datasets through Spring Data’s Pageable and Page abstractions.
+* REST Maturity Level 3 (HATEOAS): Dynamic hypermedia links included in JSON responses to guide clients through available actions (e.g., renting, maintenance) based on the vehicle’s current state.
+* Centralized Exception Handling: Global error interception using @RestControllerAdvice to ensure clean, semantic HTTP responses compliant with RFC standards.
 
----
+⸻
 
-## 🛠️ Tech Stack & Dipendenze
+🛠️ Tech Stack & Dependencies
 
-* **Java 17 / 21**
-* **Spring Boot 3.x**
+* Java 17 / 21
+* Spring Boot 3.x
     * Spring Web
     * Spring Data JPA (Hibernate)
     * Spring HATEOAS
     * Validation
-* **PostgreSQL** (Database Relazionale)
-* **MapStruct** (Mappatura dei DTO)
-* **Maven** (Gestione del ciclo di vita del progetto)
+* PostgreSQL (Relational Database)
+* MapStruct (DTO Mapping)
+* Maven (Project Build and Dependency Management)
 
----
+⸻
 
-## 🚦 Configurazione e Avvio
+🚦 Setup and Getting Started
 
-### Prerequisiti
-Assicurati di avere installato:
-* **JDK 17** o superiore
-* **Maven 3.x**
-* **PostgreSQL** (locale o tramite Docker)
-* **Git**
+Prerequisites
 
-### 👥 Clonazione e Esecuzione Locale
+Make sure you have installed:
 
-1. **Clona il repository:**
-   ```bash
-   git clone https://github.com/YourUsername/Vehicle-Management-REST-API.git
+* JDK 17 or higher
+* Maven 3.x
+* PostgreSQL (locally or via Docker)
+* Git
+
+👥 Clone and Run Locally
+
+1. Clone the repository:
+```bash
+git clone https://github.com/YourUsername/Vehicle-Management-REST-API.git
+```
