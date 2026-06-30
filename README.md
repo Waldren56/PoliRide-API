@@ -43,5 +43,5 @@ Make sure you have installed:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YourUsername/Vehicle-Management-REST-API.git
+https://github.com/simone-nicholas/PoliRide-API
 ```
